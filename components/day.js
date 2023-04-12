@@ -1,8 +1,5 @@
 import React from "react";
-import '../src/index.css'
 import moment from "moment-timezone";
-
-
 
 export default function Today(props) {
 

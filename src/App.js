@@ -1,8 +1,9 @@
 import React from "react";
-import './index.css';
+import "./App.css";
 import Navbar from "../components/navbar";
 import Current from "../components/current_forecast";
 import Future from "../components/forecast_card";
+import Currency from "../components/currency";
 import cloudy from "../static files/sunny_bg.png";
 import overcast from "../static files/overcast_bg_2.jpg";
 import sunny from "../static files/sunny_bg_2.jpg";
@@ -16,10 +17,14 @@ import storm from "../static files/storm_bg.jpg";
 
 function App() {
 
+  // State
   const [location, setLocation] = React.useState("");
   const [search, setSearch] = React.useState({location: ""});
   const [weatherDetails, setWeatherDetails] = React.useState({});
   const [forecast, setForecast] = React.useState([]);
+  const [feature, setFeature] = React.useState("weather");
+
+  // Weather Conditions
   const cloudCondition = ["Cloudy", "Partly cloudy"]
   const sunCondition = ["Sunny", "Clear"]
   const rainCondition = ["Moderate rain at times", "Moderate rain", "Heavy rain at times", "Heavy rain", "Moderate or heavy freezing rain", "Moderate or heavy rain shower", "Torrential rain shower", "Heavy freezing drizzle"]
@@ -28,8 +33,8 @@ function App() {
   const snowCondition = ["Patchy snow possible", "Patchy sleet possible", "Blowing snow", "Light sleet", "Patchy light snow", "Light snow", "Patchy moderate snow", "Moderate snow", "Light snow showers", "Light sleet showers", "Light showers of ice pellets"]
   const freezeCondition = ["Blizzard", "Freezing fog", "Moderate or heavy sleet", "Patchy heavy snow", "Heavy snow", "Ice pellets", "Moderate or heavy sleet showers", "Moderate or heavy snow showers", "Moderate or heavy showers of ice pellets"]
   const stormCondition = ["Thundery outbreaks possible", "Patchy light rain with thunder", "Moderate or heavy rain with thunder", "Patchy light snow with thunder", "Moderate or heavy snow with thunder"]
-  
 
+  // Default location for weather forecast = based on user IP
   React.useEffect(() => {
 
     fetch('https://api.ipregistry.co/?key=8cc86xe2qhpclo6g&pretty=true')
@@ -38,6 +43,7 @@ function App() {
 
   },[]);
 
+  // Retrieve current weather data for location set in state
   React.useEffect(() => {
 
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=594f3355ab1249b495714846232703&q=${location}&days=1&aqi=no&alerts=no`)
@@ -56,6 +62,7 @@ function App() {
 
   }, [location])
 
+  // Retrieve weather forecast for the next 6 days
   React.useEffect(() => {
 
       fetch(`http://api.weatherapi.com/v1/forecast.json?key=594f3355ab1249b495714846232703&q=${location}&days=7&aqi=no&alerts=no`)
@@ -72,8 +79,7 @@ function App() {
   
     }, [location])
 
-
-
+  // Conditional rendering of background image based on weather condition
   function styleBackground() {
     if (cloudCondition.includes(weatherDetails.condition))  {
       return {backgroundImage: `url(${cloudy})`}
@@ -96,6 +102,7 @@ function App() {
     }
   }
 
+  // Function that stores text typed in input box in search state
   function handleLocation(event) {
     const {name, value} = event.target
     setSearch({
@@ -103,10 +110,12 @@ function App() {
     })
   }
 
+  // Function that sets what's written in the input box as the location
   function searchLocation() {
     setLocation(search.location)
   }
 
+  // Render Future component based on the available date in forecast state
   const renderFuture = forecast.map(data => 
     <Future
       date={data.date}
@@ -115,37 +124,44 @@ function App() {
       condition={data.condition}
   />)
 
-
+  // App display
   return (
+
     <body style={styleBackground()}>
-    <div className="app--container" >
-      <Navbar />
-      <div className="app--search">
-        <input 
-          type="text"
-          placeholder="Location"
-          name="location"
-          value={search.location}
-          onChange={handleLocation}
+      <div className="app--container" >
+        <Navbar />
+        {/* <div className="app--search">
+          <input 
+            type="text"
+            placeholder="Location"
+            name="location"
+            value={search.location}
+            onChange={handleLocation}
+          />
+          <button 
+            onClick={searchLocation}
+            className="current--searchButton"
+          > Search 
+          </button>
+        </div>
+        <div className="app--current">
+        <Current 
+          weatherDetails={weatherDetails}
         />
-        <button 
-          onClick={searchLocation}
-          className="current--searchButton"
-        > Search 
-        </button>
+        </div>
+        <div className="app--forecast">
+          {renderFuture}
+        </div> */}
+        <div>
+          <Currency />
+        </div>
+        <footer>
+          <div>Developed by Raymond Santos</div>
+          <div>©2023</div>
+        </footer>
       </div>
-      <Current 
-        weatherDetails={weatherDetails}
-      />
-      <div className="app--forecast">
-        {renderFuture}
-      </div>
-      <footer>
-        <div>Developed by Raymond Santos</div>
-        <div>©2023</div>
-      </footer>
-    </div>
     </body>
+
   )
 }
 

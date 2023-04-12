@@ -41,7 +41,6 @@ export default function Current(props) {
                 />
             </div>
         </div>
-        <hr width="30%"></hr>
       </div>
     )
   }
