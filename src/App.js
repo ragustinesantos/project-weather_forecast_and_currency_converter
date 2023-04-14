@@ -19,10 +19,11 @@ function App() {
 
   // State
   const [location, setLocation] = React.useState("");
-  const [search, setSearch] = React.useState({location: ""});
   const [weatherDetails, setWeatherDetails] = React.useState({});
-  const [forecast, setForecast] = React.useState([]);
   const [feature, setFeature] = React.useState("weather");
+  const [home, setHome] = React.useState(true)
+  const [weather, setWeather] = React.useState(false)
+  const [currency, setCurrency] = React.useState(false)
 
   // Weather Conditions
   const cloudCondition = ["Cloudy", "Partly cloudy"]
@@ -62,22 +63,24 @@ function App() {
 
   }, [location])
 
-  // Retrieve weather forecast for the next 6 days
+  // Set which feature is enabled
   React.useEffect(() => {
 
-      fetch(`http://api.weatherapi.com/v1/forecast.json?key=594f3355ab1249b495714846232703&q=${location}&days=7&aqi=no&alerts=no`)
-      .then(res => res.json())
-      .then(data => data.forecast.forecastday)
-      .then(forecastday => setForecast(forecastday.slice(1).map(day => {
-          return {
-              date: day.date,
-              celsius: day.day.avgtemp_c,
-              farenheit: day.day.avgtemp_f,
-              condition: day.day.condition.text,
-          }
-      })))
-  
-    }, [location])
+    if (feature == "weather") {
+      setWeather(true)
+      setCurrency(false)
+      setHome(false)
+    } else if (feature == "currency") {
+      setCurrency(true)
+      setWeather(false)
+      setHome(false)
+    } else {
+      setHome(true)
+      setWeather(false)
+      setCurrency(false)
+    }
+
+  }, [feature])
 
   // Conditional rendering of background image based on weather condition
   function styleBackground() {
@@ -102,59 +105,35 @@ function App() {
     }
   }
 
-  // Function that stores text typed in input box in search state
-  function handleLocation(event) {
-    const {name, value} = event.target
-    setSearch({
-      [name]: value
-    })
-  }
-
-  // Function that sets what's written in the input box as the location
-  function searchLocation() {
-    setLocation(search.location)
-  }
-
-  // Render Future component based on the available date in forecast state
-  const renderFuture = forecast.map(data => 
-    <Future
-      date={data.date}
-      celsius={data.celsius}
-      farenheit={data.farenheit}
-      condition={data.condition}
-  />)
-
   // App display
   return (
 
     <body style={styleBackground()}>
+
+      {/* Navbar */}
+      <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#">Trippet</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="navbar-nav">
+                      <a class="nav-link" aria-current="page" href="#">Home</a>
+                      <a class="nav-link" href="#">Weather</a>
+                      <a class="nav-link" href="#">Currency</a>
+                  </div>
+              </div>
+          </div>
+      </nav>
+
       <div className="app--container" >
-        <Navbar />
-        {/* <div className="app--search">
-          <input 
-            type="text"
-            placeholder="Location"
-            name="location"
-            value={search.location}
-            onChange={handleLocation}
-          />
-          <button 
-            onClick={searchLocation}
-            className="current--searchButton"
-          > Search 
-          </button>
-        </div>
-        <div className="app--current">
-        <Current 
-          weatherDetails={weatherDetails}
-        />
-        </div>
-        <div className="app--forecast">
-          {renderFuture}
-        </div> */}
         <div>
-          <Currency />
+          <Current />
         </div>
+        {/* <div>
+          <Currency />
+        </div> */}
         <footer>
           <div>Developed by Raymond Santos</div>
           <div>©2023</div>

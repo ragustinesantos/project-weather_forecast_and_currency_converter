@@ -1,5 +1,6 @@
 import React from "react";
 import PresetCurrency from "./preset";
+import trading from "../static files/trading.png"
 
 export default function Currency() {
 
@@ -151,7 +152,9 @@ export default function Currency() {
                             onChange={handleBaseAmount} />
                         </div>
                     </div>
-                    <div className="currency--image"></div>
+                    <div className="currency--image">
+                        <img className="currency--tradingImg" src={trading} alt="trading icon"></img>
+                    </div>
                     <div className="currency--target">
                         <div>
                             <select 

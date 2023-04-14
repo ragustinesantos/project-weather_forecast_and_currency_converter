@@ -27,6 +27,8 @@ body {
 
 .navbar-nav {
     margin-left: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .navbar-nav .nav-link{
@@ -423,7 +425,7 @@ img {
     margin: auto;
     text-align: center;
     margin-bottom: 40px;
-    background-color: rgba(145, 144, 144, 0.3);
+    background-color: rgba(31, 31, 31, 0.4);
     padding: 40px 0px 40px 0px  ;
 }
 
@@ -461,6 +463,13 @@ img {
     font-family: Quicksand;
     font-size: 1.2rem;
     border-radius: 0px 0px 8px 8px;
+}
+
+.currency--image {
+    width: 45   px;
+    margin: auto;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .currency--targetSelect {
@@ -514,7 +523,7 @@ img {
     margin: auto;
     font-family: Quicksand;
     font-weight: 500;
-    width: 62%;
+    width: 70%;
 }
 
 /* Preset currencies */
