@@ -85,7 +85,7 @@ export default function Current() {
             <div className="currency--title">
                 <span>Weather Forecast</span>
             </div>
-            <div className="app--search">
+            <div className="current--search">
                 <input 
                     type="text"
                     placeholder="Location"
@@ -99,41 +99,43 @@ export default function Current() {
                 > Search 
                 </button>
             </div>
-            <div className="current--container">
-                <div className="current--top">
-                    <div className="current--quadOne quad">
-                        <Today 
-                        country={weatherDetails.country}
-                        city={weatherDetails.city}
-                        date={weatherDetails.date}
-                        />
+            <div className="current--all">
+                <div className="current--container">
+                    <div className="current--top">
+                        <div className="current--quadOne current--quad">
+                            <Today 
+                            country={weatherDetails.country}
+                            city={weatherDetails.city}
+                            date={weatherDetails.date}
+                            />
+                        </div>
+                        <div className="current--quadTwo current--quad">
+                            <Weather 
+                            condition={weatherDetails.condition}
+                            />
+                        </div>
                     </div>
-                    <div className="current--quadTwo quad">
-                        <Weather 
-                        condition={weatherDetails.condition}
-                        />
+                    <div className="current--bottom">
+                        <div className="current--quadThree current--quad">
+                            <Time 
+                            sunrise={weatherDetails.sunrise}
+                            sunset={weatherDetails.sunset}
+                            timezone={weatherDetails.timezone}
+                            country={weatherDetails.country}
+                            />
+                        </div>
+                        <div className="current--quadFour current--quad">
+                            <Forecast 
+                            celsius={weatherDetails.celsius}
+                            farenheit={weatherDetails.farenheit}
+                            condition={weatherDetails.condition}
+                            />
+                        </div>
                     </div>
                 </div>
-                <div className="current--bottom">
-                    <div className="current--quadThree quad">
-                        <Time 
-                        sunrise={weatherDetails.sunrise}
-                        sunset={weatherDetails.sunset}
-                        timezone={weatherDetails.timezone}
-                        country={weatherDetails.country}
-                        />
-                    </div>
-                    <div className="current--quadFour quad">
-                        <Forecast 
-                        celsius={weatherDetails.celsius}
-                        farenheit={weatherDetails.farenheit}
-                        condition={weatherDetails.condition}
-                        />
-                    </div>
+                <div className="current--forecast">
+                    {renderFuture}
                 </div>
-            </div>
-            <div className="app--forecast">
-                {renderFuture}
             </div>
         </div>
 

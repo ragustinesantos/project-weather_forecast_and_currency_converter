@@ -59,31 +59,42 @@ body {
 
 /* App Body */
 
-.app--search {
-    text-align: center;
-    margin-top: 60px;
+.current--forecast::-webkit-scrollbar {
+    display: none;
+  }
+
+/* Current Forecast */
+
+.current--all {
+    margin: 10px;
+    margin-top: 20px;
 }
 
-.app--search > input {
-    width: 35vh;
+.current--search {
+    text-align: center;
+    margin: 10px 20px 0px 20px;
+}
+
+.current--search > input {
+    width: 30vh;
     margin-right: 5px;
     padding: 5px 0px 5px 4px;
     border-radius: 4px;
     border: 1px solid black
 }
 
-.app--search > button {
-    padding: 5px 15px 5px 15px;
+.current--search > button {
+    padding: 6px 15px 6px 15px;
     border-radius: 4px;
     transition: 0.4s;
     font-family: Quicksand;
     font-weight: 700;
-    background: rgb(48, 48, 48);
+    background: rgb(32, 32, 32);
     color: white;
     border: none;
 }
 
-.app--search > button:hover {
+.current--search > button:hover {
     background: rgba(64, 127, 146);
 }
 
@@ -95,25 +106,6 @@ button:focus {
     outline: none;
 }
 
-.app--forecast{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: scroll;
-    margin-left: 10px;
-}
-
-.app--forecast::-webkit-scrollbar {
-    display: none;
-  }
-
-/* Current Forecast */
-
-.current--container {
-    margin-top: 20px;
-    margin: 20px;
-}
-
 .current--top {
     display: flex;
     justify-content: center;
@@ -122,7 +114,7 @@ button:focus {
 .current--bottom {
     display: flex;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 .current--quadOne {
@@ -148,7 +140,7 @@ button:focus {
     
 }
 
-.quad {
+.current--quad {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,15 +152,16 @@ button:focus {
     background-color: rgba(141, 141, 141, 0.7);
 }
 
-.quad:hover {
+.current--quad:hover {
     background: rgba(64, 127, 146, 0.8);
     
 }
 
-.quadFour {
-    font-family: Quicksand;
-    font-weight: 700;
-    font-size: 1rem;
+.current--forecast{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
 }
 
 /* day.js = Quadrant One */
@@ -194,7 +187,7 @@ button:focus {
 
 /* weather.js = Quadrant Two */
 
-img {
+.weatherImg {
     width: 95%;
     object-fit: cover;
     border-radius: 20px;
@@ -258,6 +251,12 @@ img {
 
 /* temperature.js = Quandrant Four */
 
+.quadFour {
+    font-family: Quicksand;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
 .quadFour--temperature {
     display: flex;
     flex-direction: column;
@@ -306,7 +305,7 @@ img {
     font-family: Quicksand;
     font-weight: 500;
     font-size: 0.7rem;
-    margin: 30px 20px 90px 10px;
+    margin: 15px 10px 45px 10px;
     border-radius: 10px 10px 10px 10px;
     transition: 0.4s;
     background-color: rgba(141, 141, 141, 0.7);
@@ -316,7 +315,7 @@ img {
 .future--container:hover {
     background: rgba(64, 127, 146, 0.8);
     position: relative;
-    transform: translateY(-15%);
+    transform: translateY(-7%);
 }
 
 .future--left {
@@ -424,7 +423,7 @@ img {
     width: 100%;
     margin: auto;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     background-color: rgba(31, 31, 31, 0.4);
     padding: 40px 0px 40px 0px  ;
 }
@@ -442,7 +441,7 @@ img {
     width: 30vw;
     min-width: 220px;
     padding: 5px 0px 5px 0px;
-    margin: 20px 5px 0px 5px;
+    margin: 5px 5px 0px 5px;
     border: none;
     background-color: rgb(0,0,0,0.7);
     color: white;
@@ -465,11 +464,13 @@ img {
     border-radius: 0px 0px 8px 8px;
 }
 
-.currency--image {
-    width: 45   px;
-    margin: auto;
+.currency--image{
     text-align: center;
     margin-top: 20px;
+}
+
+.currency--tradingImg {
+    width: 45px;
 }
 
 .currency--targetSelect {

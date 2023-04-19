@@ -55,8 +55,8 @@ export default function Future(props) {
                 </div>
             </div>
             <div className="future--right">
-                <div className="future--celsius">{props.celsius}</div>
-                <div className="future--farenheit">{props.farenheit}</div>
+                <div className="future--celsius">{props.celsius}°C</div>
+                <div className="future--farenheit">{props.farenheit}°F</div>
                 <div className="future--condition">{props.condition}</div>
             </div>
         </div>

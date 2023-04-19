@@ -22,8 +22,9 @@ function App() {
   const [weatherDetails, setWeatherDetails] = React.useState({});
   const [feature, setFeature] = React.useState("weather");
   const [home, setHome] = React.useState(true)
-  const [weather, setWeather] = React.useState(false)
+  const [weather, setWeather] = React.useState(true)
   const [currency, setCurrency] = React.useState(false)
+  console.log(weather)
 
   // Weather Conditions
   const cloudCondition = ["Cloudy", "Partly cloudy"]
@@ -105,6 +106,16 @@ function App() {
     }
   }
 
+  function handleWeather() {
+    setFeature("weather")
+    console.log(feature)
+  }
+
+  function handleCurrency() {
+    setFeature("currency")
+    console.log(feature)
+  }
+
   // App display
   return (
 
@@ -120,8 +131,8 @@ function App() {
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div class="navbar-nav">
                       <a class="nav-link" aria-current="page" href="#">Home</a>
-                      <a class="nav-link" href="#">Weather</a>
-                      <a class="nav-link" href="#">Currency</a>
+                      <a class="nav-link" onClick={handleWeather} href="#">Weather</a>
+                      <a class="nav-link" onClick={handleCurrency} href='#'>Currency</a>
                   </div>
               </div>
           </div>
@@ -129,11 +140,8 @@ function App() {
 
       <div className="app--container" >
         <div>
-          <Current />
+          {weather ? <Current /> : <Currency />}
         </div>
-        {/* <div>
-          <Currency />
-        </div> */}
         <footer>
           <div>Developed by Raymond Santos</div>
           <div>©2023</div>

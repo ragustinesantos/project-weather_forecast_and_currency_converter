@@ -1,6 +1,7 @@
 import React from "react";
 import PresetCurrency from "./preset";
 import trading from "../static files/trading.png"
+import { NumericFormat } from "react-number-format";
 
 export default function Currency() {
 
@@ -109,7 +110,7 @@ export default function Currency() {
     // Everytime a new base amount is inputted, setBaseAmount as such
     function handleBaseAmount(event) {
         const {value} = event.target
-        setBaseAmount(value)
+        setBaseAmount(value.replace(/[-&\/\\#,+()$~%'":*?<>{} ]/g, ""))
     }
 
     // Map out and render preset currency cards based on the number of chosen currencies in currencyPreset
@@ -169,7 +170,7 @@ export default function Currency() {
                             </select>
                         </div>
                         <div className="currency--targetAmount">
-                            {targetAmount}
+                            <NumericFormat value={targetAmount} allowLeadingZeros decimalScale={2} thousandSeparator="," displayType="text" />
                         </div>
                     </div>
                 </div>

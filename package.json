@@ -13,7 +13,8 @@
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.42",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-number-format": "^5.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
